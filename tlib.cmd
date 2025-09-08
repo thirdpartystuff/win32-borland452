@@ -14,7 +14,8 @@ for %%f in (%*) do (
 
 if exist tlib-failed del tlib-failed
 ("%~dp0bin\tlib" /p512 "%file%" %args% || echo 1 > tlib-failed) ^
-    | grep -v "TLIB 4.00 Copyright (c) 1987, 1994 Borland International"
+    | grep -v "TLIB 4.00 Copyright (c) 1987, 1994 Borland International" ^
+    | grep -v -E "^$"
 if exist tlib-failed (
     del tlib-failed
     exit /B 1
