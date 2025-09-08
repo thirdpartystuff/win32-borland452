@@ -1,5 +1,6 @@
 @echo off
 setlocal enabledelayedexpansion
+
 set args=
 set file=
 set skip=1
@@ -10,6 +11,7 @@ for %%f in (%*) do (
     if q!skip!==q0 set args=!args! "+!f!"
     set skip=0
 )
+
 if exist tlib-failed del tlib-failed
 ("%~dp0bin\tlib" /p512 "%file%" %args% || echo 1 > tlib-failed) ^
     | grep -v "TLIB 4.00 Copyright (c) 1987, 1994 Borland International"
